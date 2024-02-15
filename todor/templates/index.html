@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{%block title%}Inicio{%endblock%} 
+
+{% block content %}
+
+<div class="container-sm text-center">
+  <h1 class="display-3">Bienvenido a mi lista de tareas</h1>
+  <p class="lead">"En esta pagina podras agregar y eliminar tareas"</p>
+  <hr class="my-4" />
+  <p>Para comenzar crea una cuenta</p>
+  <div class="d-flex justify-content-center">
+    <a
+      class="btn btn-secondary mx-2 btn-lg"
+      href="{{url_for('auth.registro')}}"
+      role="button"
+      >Registrarse</a
+    >
+    <a
+      class="btn btn-primary mx-2 btn-lg"
+      href="{{url_for('auth.inicio')}}"
+      role="button"
+      >Iniciar Sesion</a
+    >
+  </div>
+</div>
+{% endblock %}
