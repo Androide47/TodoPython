@@ -12,9 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List - {% block title %}{% endblock %}</title>
   </head>
-  <body class=""       
-  data-bs-theme="dark"
-  >
+  <body class="" data-bs-theme="dark">
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary rounded"
       aria-label="Thirteenth navbar example"
@@ -39,10 +37,17 @@
           >
           <ul class="navbar-nav col-lg-6 justify-content-lg-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Inicio</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{{url_for('index')}}"
+                >Inicio</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('auth.registro')}}">Registro</a>
+              <a class="nav-link" href="{{url_for('auth.registro')}}"
+                >Registro</a
+              >
             </li>
             <li class="nav-item dropdown">
               <a
@@ -63,11 +68,11 @@
           </ul>
           <div class="d-lg-flex col-lg-3 justify-content-lg-end">
             <a
-            class="btn btn-primary mx-2 btn-lg"
-            href="{{url_for('auth.inicio')}}"
-            role="button"
-            >Iniciar Sesion</a
-          >
+              class="btn btn-primary mx-2 btn-lg"
+              href="{{url_for('auth.inicio')}}"
+              role="button"
+              >Iniciar Sesion</a
+            >
           </div>
         </div>
       </div>
@@ -75,7 +80,18 @@
 
     <br />
 
-    {% block content %} {% endblock %}
+    {% block content %} {% endblock %} {% for message in
+    get_flashed_messages()%}
+
+    <div class="container my-3" data-bs-theme="dark">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="alert alert-warning" role="alert">{{message}}</div>
+        </div>
+      </div>
+    </div>
+
+    {%endfor%}
 
     <br />
 
@@ -94,7 +110,9 @@
             </svg>
           </a>
           <span class="mb-3 mb-md-0 text-body-secondary"
-            >&copy; 2024 Androide_47</span
+            ><a href="https://www.androide47.com"
+              >&copy; 2024 Androide_47</a
+            ></span
           >
         </div>
 
