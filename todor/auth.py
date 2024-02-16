@@ -2,6 +2,7 @@ from flask import (Blueprint, render_template, request, url_for, flash, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from todor import db
+import functools
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -50,3 +51,25 @@ def registro():
         
         
     return render_template('auth/registro.html')
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = User.query.get_or_404(user_id)
+        
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.inicio'))
+        return view(**kwargs)
+    return wrapped_view
