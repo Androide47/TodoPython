@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<section class="container sm">
+  <h3 class="text-center mt-3 mb-3">
+    {% block title %}Crear Tarea{% endblock %}
+  </h3>
+  <form action="" method="POS T">
+    <div class="form-group">
+      <label for="title">Tarea</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="form-control"
+        required
+      />
+    </div>
+    <div>
+      <label for="desc">Descripción</label>
+      <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+    </div>
+    <br />
+    <div>
+      <input type="submit" class="btn btn-primary" value="Guardar" />
+      <a href="{{ url_for('todo.index') }}" class="btn btn-secondary"
+        >Cancelar</a
+      >
+    </div>
+  </form>
+</section>
+{% endblock %}
