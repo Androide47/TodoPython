@@ -1,22 +1,32 @@
 {% extends 'base.html' %} {% block content %}
 <section class="container-sm">
   <h3 class="text-center mt-3 mb-3">
-    {% block title %}Crear Tarea{% endblock %}
+    {% block title %}Editar Tarea{% endblock %}
   </h3>
   <form action="" method="post">
     <div class="form-group">
-      <label for="title">Tarea</label>
+      <label for="title">Titulo</label>
       <input
         type="text"
         name="title"
         id="title"
         class="form-control"
         required
+        value="{{todo.title}}"
       />
     </div>
     <div class="form-group">
       <label for="desc">Descripción</label>
-      <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+      <textarea class="form-control" name="desc" id="desc" rows="3">
+    {{todo.desc}}
+    </textarea
+      >
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="state">Estado</label>
+      <input type="checkbox" name="state" id="state" class="form-check-input" {%
+      if todo.state == true %} checked {% endif %} />
     </div>
     <br />
     <div class="text-center">
